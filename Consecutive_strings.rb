@@ -13,8 +13,17 @@ n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
 =end
 
 def longest_consec(strarr, k)
-    return "" if strarr.length == 0 or k > strarr.length or k <= 0
-    return strarr.sort[0...k].join
+    max_size = 0
+    max_str = ""
+    (0..strarr.size-k).each do |index|
+        cur_str = strarr[index...index+k].join
+        cur_size = cur_str.size
+        if cur_size > max_size
+            max_size = cur_size
+            max_str = cur_str
+        end
+    end    
+    max_str
 end
 
 p longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2)
